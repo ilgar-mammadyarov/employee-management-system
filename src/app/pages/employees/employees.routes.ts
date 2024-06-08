@@ -23,14 +23,6 @@ export const EMPLOYEES_ROUTES: Routes = [
         data: { breadcrumb: 'Update Employee' },
         component: UpdateEmployeeComponent,
       },
-      // {
-      //     path: 'passenger-search',
-      //     component: PassengerSearchComponent
-      // },
-      // {
-      //     path: 'flight-edit/:id',
-      //     component: FlightEditComponent
-      // }
     ],
   },
 ];
