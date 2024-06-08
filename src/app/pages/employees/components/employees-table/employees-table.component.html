@@ -1,0 +1,51 @@
+@if (employees().length > 0) {
+<table class="w-full">
+  <thead>
+    <tr
+      class="text-base text-[--gray-500] font-normal border-b border-[--gray-100]"
+    >
+      <td class="py-2.5">Employee Name</td>
+      <td class="py-2.5">Employee ID</td>
+      <td class="py-2.5">Department</td>
+      <td class="py-2.5">Job Title</td>
+      <td class="py-2.5">Phone Number</td>
+      <td class="py-2.5">Email</td>
+      <td class="py-2.5">Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    @for (employee of employees(); track $index) {
+    <tr
+      class="text-base text-[--dark-500] font-normal border-b border-[--gray-100]"
+    >
+      <td class="pb-2.5 pt-5">
+        {{ employee.firstName }} {{ employee.lastName }}
+      </td>
+      <td class="pb-2.5 pt-5">{{ employee.id }}</td>
+      <td class="pb-2.5 pt-5">{{ employee.department }}</td>
+      <td class="pb-2.5 pt-5">{{ employee.jobTitle }}</td>
+      <td class="pb-2.5 pt-5">{{ employee.phoneNumber }}</td>
+      <td class="pb-2.5 pt-5">{{ employee.email }}</td>
+      <td class="pb-2.5 pt-5 flex gap-x-2">
+        <a [routerLink]="[updateEmployeePath, employee.id]" class="h-6 w-6">
+          <img src="assets/svg/pen.svg" alt="" />
+        </a>
+        <button (click)="deleteEmployee(employee.id)" class="h-6 w-6">
+          <img src="assets/svg/trash.svg" alt="" />
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+<div popover id="delete-modal">
+  <h1>Are you sure?</h1>
+  <div class="col-span-2 flex gap-x-2 justify-end">
+    <button app-button variant="secondary">Cancel</button>
+    <button app-button>Save</button>
+  </div>
+</div>
+} @else {
+<div class="w-full text-center">No Data</div>
+}

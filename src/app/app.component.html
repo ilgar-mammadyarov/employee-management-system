@@ -1,6 +1,12 @@
-<main class="flex flex-col max-w-2xl mx-auto bg-[--white-500]">
+<main
+  class="flex flex-col gap-y-3 max-w-2xl mx-auto bg-[--white-500] p-6 h-screen"
+>
   <app-header />
-  <div class="grow">
+  <div
+    class="grow border border-[--gray-200] rounded-xl p-5 h-full overflow-hidden"
+  >
     <router-outlet />
   </div>
 </main>
+
+<app-snackbar />

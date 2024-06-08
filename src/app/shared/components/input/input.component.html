@@ -1,0 +1,9 @@
+<div class="app-input" [ngClass]="{ 'app-input-invalid': invalid() }">
+  <div class="app-input-label">
+    <ng-content select="label"></ng-content>
+  </div>
+  <ng-content select="[appInputField]"></ng-content>
+  <div class="app-input-helper">
+    <ng-content select="[appInputHelper]"></ng-content>
+  </div>
+</div>

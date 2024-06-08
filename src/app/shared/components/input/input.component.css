@@ -1,0 +1,24 @@
+.app-input {
+  @apply flex flex-col gap-y-2;
+}
+
+.app-input-field {
+  @apply w-full h-14 rounded-xl px-4 border border-[--gray-200] text-base text-[--dark-500] placeholder:text-[--gray-400] outline-none focus:ring-[--primary-500] focus:border-[--primary-500];
+}
+
+.app-input-invalid > .app-input-field {
+  @apply border-[--tertiary-500];
+}
+
+.app-input-label {
+  @apply text-sm text-[--gray-500] font-normal px-5;
+}
+
+.app-input-helper {
+  @apply text-xs text-[--dark-500] font-normal px-5;
+}
+
+.app-input-invalid > .app-input-label,
+.app-input-invalid > .app-input-helper {
+  @apply text-[--tertiary-500];
+}

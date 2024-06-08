@@ -1,1 +1,62 @@
-<p>employees works!</p>
+<section class="flex flex-col gap-y-6 h-full">
+  <div class="flex items-center justify-between">
+    <div class="relative w-full max-w-80">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+      >
+        <img src="assets/svg/search.svg" alt="Search icon" />
+      </div>
+      <input
+        [formControl]="searchControl"
+        type="text"
+        class="border border-[--gray-100] placeholder:text-[--dark-200] text-[--dark-500] text-sm rounded-xl focus:ring-[--primary-500] focus:border-[--primary-500] block w-full ps-10 p-3.5 outline-none"
+        placeholder="Search by firstname or lastname"
+      />
+    </div>
+
+    <a app-button [routerLink]="addNewEmployeeRoutePath">
+      <img src="assets/svg/plus-bordered.svg" alt="Plus icon" />
+      <span>Add New Employee</span>
+    </a>
+  </div>
+
+  <div class="grow h-full overflow-scroll">
+    <app-employees-table
+      [employees]="employees()"
+      (delete)="deletedEmployeeId.set($event); deleteModal.showPopover()"
+    />
+  </div>
+</section>
+
+<div
+  popover
+  id="deleteModal"
+  #deleteModal
+  class="p-6 rounded-xl shadow-2xl max-w-64 w-full"
+>
+  <h1 class="text-center text-xl text-[--dark-500] font-semibold pb-5">
+    Are you sure?
+  </h1>
+  <div class="col-span-2 flex gap-x-2 justify-end">
+    <button
+      app-button
+      variant="secondary"
+      class="w-full"
+      popovertarget="deleteModal"
+      popovertargetaction="hide"
+    >
+      Cancel
+    </button>
+    <button
+      app-button
+      class="w-full"
+      popovertarget="deleteModal"
+      popovertargetaction="hide"
+      (click)="deleteEmployee()"
+    >
+      Save
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

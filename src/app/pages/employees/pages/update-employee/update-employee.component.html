@@ -1,0 +1,205 @@
+@if(employee(); as employee){
+<section>
+  <div
+    class="flex flex-col gap-y-2 text-[--dark-500] border-b border-[--gray-200] pb-8"
+  >
+    <h2 class="text-2xl font-semibold">
+      {{ employee.firstName }} {{ employee.lastName }}
+    </h2>
+    <div class="flex gap-x-2.5 items-center">
+      <img src="assets/svg/suitcase.svg" alt="Suitcase icon" />
+      <span class="text-base">{{ employee.jobTitle }}</span>
+    </div>
+    <div class="flex gap-x-2.5 items-center">
+      <img src="assets/svg/letter.svg" alt="Letter icon" />
+      <span class="text-base">{{ employee.email }}</span>
+    </div>
+  </div>
+
+  <nav class="my-7">
+    <div
+      class="flex gap-x-2.5 items-center fill-[--primary-500] text-[--primary-500] border-b-2 border-[--primary-500] max-w-max pb-2"
+    >
+      <span>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11ZM12 21C15.866 21 19 19.2091 19 17C19 14.7909 15.866 13 12 13C8.13401 13 5 14.7909 5 17C5 19.2091 8.13401 21 12 21Z"
+          />
+        </svg>
+      </span>
+      <span> Personal Information </span>
+    </div>
+  </nav>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid grid-cols-2 gap-x-5 gap-y-3"
+  >
+    <app-input
+      [invalid]="
+        !form.get('firstName')!.pristine && form.get('firstName')!.invalid
+      "
+    >
+      <input
+        id="firstName"
+        formControlName="firstName"
+        type="text"
+        appInputField
+        placeholder="First Name"
+      />
+      @if (form.get('firstName')?.errors?.['required'] &&
+      !form.get('firstName')!.pristine) {
+      <div appInputHelper>Required.</div>
+      } @else if (form.get('firstName')?.errors?.['minlength'] &&
+      !form.get('firstName')!.pristine) {
+      <div appInputHelper>Minimum character count in 3.</div>
+      }@else if (form.get('firstName')?.errors?.['maxlength'] &&
+      !form.get('firstName')!.pristine) {
+      <div appInputHelper>Maximum character count in 12.</div>
+      } @else if(form.get('firstName')?.errors?.['pattern'] &&
+      !form.get('firstName')!.pristine) {
+      <div appInputHelper>Only characters.</div>
+      }
+    </app-input>
+
+    <app-input
+      [invalid]="
+        !form.get('lastName')!.pristine && form.get('lastName')!.invalid
+      "
+    >
+      <input
+        id="lastName"
+        formControlName="lastName"
+        type="text"
+        appInputField
+        placeholder="Last Name"
+      />
+      @if (form.get('lastName')?.errors?.['required'] &&
+      !form.get('lastName')!.pristine) {
+      <div appInputHelper>Required.</div>
+      } @else if (form.get('lastName')?.errors?.['minlength'] &&
+      !form.get('lastName')!.pristine) {
+      <div appInputHelper>Minimum character count in 3.</div>
+      }@else if (form.get('lastName')?.errors?.['maxlength'] &&
+      !form.get('lastName')!.pristine) {
+      <div appInputHelper>Maximum character count in 12.</div>
+      } @else if(form.get('lastName')?.errors?.['pattern'] &&
+      !form.get('lastName')!.pristine) {
+      <div appInputHelper>Only characters.</div>
+      }
+    </app-input>
+
+    <app-input
+      [invalid]="!form.get('email')!.pristine && form.get('email')!.invalid"
+    >
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        appInputField
+        placeholder="Email"
+      />
+      @if (form.get('email')?.errors?.['required'] &&
+      !form.get('email')!.pristine) {
+      <div appInputHelper>Required.</div>
+      } @else if (form.get('email')?.errors?.['email'] &&
+      !form.get('email')!.pristine) {
+      <div appInputHelper>Email is not correct.</div>
+      }
+    </app-input>
+
+    <app-input
+      [invalid]="
+        !form.get('phoneNumber')!.pristine && form.get('phoneNumber')!.invalid
+      "
+    >
+      <input
+        id="phoneNumber"
+        formControlName="phoneNumber"
+        type="tel"
+        appInputField
+        placeholder="Phone Number"
+      />
+      @if (form.get('phoneNumber')?.errors?.['required'] &&
+      !form.get('phoneNumber')!.pristine) {
+      <div appInputHelper>Required.</div>
+      } @else if (form.get('phoneNumber')?.errors?.['pattern'] &&
+      !form.get('phoneNumber')!.pristine) {
+      <div appInputHelper>Only numbers.</div>
+      } @else if (form.get('phoneNumber')?.errors?.['maxlength'] &&
+      !form.get('phoneNumber')!.pristine) {
+      <div appInputHelper>Maximum character count in 12.</div>
+      }
+    </app-input>
+
+    <app-input
+      [invalid]="
+        !form.get('jobTitle')!.pristine && form.get('jobTitle')!.invalid
+      "
+    >
+      <input
+        id="jobTitle"
+        formControlName="jobTitle"
+        type="jobTitle"
+        appInputField
+        placeholder="Job Title"
+      />
+      @if (form.get('jobTitle')?.errors?.['required'] &&
+      !form.get('jobTitle')!.pristine) {
+      <div appInputHelper>Required.</div>
+      } @else if (form.get('jobTitle')?.errors?.['maxlength'] &&
+      !form.get('jobTitle')!.pristine) {
+      <div appInputHelper>Maximum character count in 12.</div>
+      }
+    </app-input>
+
+    <app-input
+      [invalid]="
+        !form.get('department')!.pristine && form.get('department')!.invalid
+      "
+    >
+      <input
+        id="department"
+        formControlName="department"
+        type="department"
+        appInputField
+        placeholder="Department"
+      />
+      @if (form.get('department')?.errors?.['required'] &&
+      !form.get('department')!.pristine) {
+      <div appInputHelper>Required.</div>
+      } @else if (form.get('department')?.errors?.['maxlength'] &&
+      !form.get('department')!.pristine) {
+      <div appInputHelper>Maximum character count in 12.</div>
+      }
+    </app-input>
+
+    <div class="col-span-2 flex gap-x-2 justify-end">
+      <button
+        app-button
+        variant="secondary"
+        type="button"
+        [disabled]="form!.pristine"
+        (click)="setForm()"
+      >
+        Cancel
+      </button>
+      <button
+        app-button
+        [disabled]="form!.pristine || form!.invalid"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</section>
+}

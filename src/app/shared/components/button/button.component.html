@@ -1,0 +1,10 @@
+<span
+  class="flex items-center justify-center gap-x-2 rounded-xl px-5 py-3.5"
+  [ngClass]="{
+    'primary-button': variant() === 'primary',
+    'secondary-button': variant() === 'secondary'
+  }"
+>
+  <ng-content select="img"></ng-content>
+  <ng-content></ng-content>
+</span>

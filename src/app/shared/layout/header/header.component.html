@@ -1,4 +1,18 @@
-<header>
-  <h2>All Employees</h2>
-  <p>All employee information</p>
+<header class="py-3">
+  <h2 class="text-xl font-semibold text-[--dark-500]">
+    {{ breadcrumbs().at(-1)?.alias }}
+  </h2>
+  <div class="flex items-center gap-x-1">
+    @for (breadcrumb of breadcrumbs(); track breadcrumb.path; let index =
+    $index) {
+    <a
+      class="text-sm font-normal text-[--dark-500]"
+      [routerLink]="breadcrumb.path"
+    >
+      {{ breadcrumb.alias }}
+    </a>
+    @if (index !== breadcrumbs().length - 1) {
+    <img src="assets/svg/arrow.svg" alt="Arrow icon" />
+    } }
+  </div>
 </header>

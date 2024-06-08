@@ -1,28 +1,36 @@
 import { Routes } from '@angular/router';
 import { EmployeesComponent } from './employees.component';
+import { AddNewEmployeeComponent, UpdateEmployeeComponent } from './pages';
+import { EmployeesRoutePath } from './employees.constants';
 
 export const EMPLOYEES_ROUTES: Routes = [
   {
     path: '',
-    component: EmployeesComponent,
-    // children: [
-    //     {
-    //         path: '',
-    //         pathMatch: 'full',
-    //         redirectTo: 'flight-search'
-    //     },
-    //     {
-    //         path: 'flight-search',
-    //         component: FlightSearchComponent
-    //     },
-    //     {
-    //         path: 'passenger-search',
-    //         component: PassengerSearchComponent
-    //     },
-    //     {
-    //         path: 'flight-edit/:id',
-    //         component: FlightEditComponent
-    //     }
-    // ]
+    data: { breadcrumb: 'All Employees' },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: EmployeesComponent,
+      },
+      {
+        path: EmployeesRoutePath.AddNewEmployee,
+        data: { breadcrumb: 'Add New Employee' },
+        component: AddNewEmployeeComponent,
+      },
+      {
+        path: `${EmployeesRoutePath.UpdateEmployee}/:id`,
+        data: { breadcrumb: 'Update Employee' },
+        component: UpdateEmployeeComponent,
+      },
+      // {
+      //     path: 'passenger-search',
+      //     component: PassengerSearchComponent
+      // },
+      // {
+      //     path: 'flight-edit/:id',
+      //     component: FlightEditComponent
+      // }
+    ],
   },
 ];

@@ -1,0 +1,13 @@
+<div class="absolute top-5 right-5 z-50">
+  @for (snackbar of snackbars(); track $index) {
+  <div
+    class="p-4 mb-4 text-sm rounded-xl"
+    [ngClass]="{
+      'text-[--tertiary-800] bg-[--tertiary-100]': snackbar.type === 'fail',
+      'text-[--secondary-800] bg-[--secondary-100]': snackbar.type === 'success'
+    }"
+  >
+    {{ snackbar.message }}
+  </div>
+  }
+</div>

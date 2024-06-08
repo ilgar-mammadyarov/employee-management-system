@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { HeaderService } from './header.service';
+import { HeaderStore } from './header.store';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
+  providers: [HeaderService, HeaderStore],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  private readonly headerStore = inject(HeaderStore);
 
+  readonly breadcrumbs = this.headerStore.breadcrumbs;
+
+  constructor() {
+    this.headerStore.init();
+  }
 }

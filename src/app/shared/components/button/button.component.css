@@ -1,0 +1,21 @@
+.primary-button {
+  @apply text-[--white-500] bg-[--primary-500] hover:bg-[--primary-400];
+}
+[app-button]:active:not(:disabled) > .primary-button {
+  @apply bg-[--primary-700];
+}
+
+[app-button]:disabled > .primary-button {
+  @apply bg-[--gray-300];
+}
+
+.secondary-button {
+  @apply text-[--dark-500] bg-[--white-500] border border-[--gray-200] hover:bg-[--gray-100];
+}
+[app-button]:active:not(:disabled) > .secondary-button {
+  @apply bg-[--gray-200];
+}
+
+[app-button]:disabled > .secondary-button {
+  @apply bg-[--gray-300] text-[--white-500];
+}
